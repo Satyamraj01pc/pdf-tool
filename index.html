@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PDF Tools – Free & Client‑Side</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f172a;
+      --card:#111827dd;
+      --muted:#94a3b8;
+      --text:#e5e7eb;
+      --accent:#22d3ee;
+      --accent2:#a78bfa;
+      --ring: 0 0 0 3px rgba(34,211,238,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);background:radial-gradient(1200px 800px at 100% -20%,rgba(167,139,250,.12),transparent),radial-gradient(1000px 600px at -10% 0%, rgba(34,211,238,.12), transparent), var(--bg);}
+    .container{max-width:1100px;margin:32px auto;padding:0 16px}
+    .hero{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .title{font-size:clamp(24px,4vw,38px);font-weight:800;letter-spacing:.3px}
+    .subtitle{color:var(--muted);max-width:700px}
+    .bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .pill{padding:8px 12px;border:1px solid #334155;border-radius:999px;color:#cbd5e1;background:rgba(2,6,23,.6)}
+    .grid{margin-top:28px;display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{grid-column:span 12;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(148,163,184,.18);backdrop-filter: blur(6px);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    @media(min-width:900px){.card{grid-column:span 6}}
+    .card h3{margin:0 0 12px 0;font-size:20px}
+    .card p{margin:0 0 12px 0;color:var(--muted)}
+    .inputs{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    input[type="file"], input[type="text"], select{background:#0b1220;color:#e2e8f0;border:1px solid #334155;padding:10px 12px;border-radius:12px;outline:none}
+    input[type="text"]:focus, select:focus{box-shadow: var(--ring)}
+    .btn{appearance:none;border:none;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#06111a;font-weight:800;padding:11px 14px;border-radius:12px;cursor:pointer}
+    .btn.secondary{background:#0b1220;color:#e2e8f0;border:1px solid #334155}
+    .small{font-size:12px;color:#9ca3af}
+    .list{border:1px dashed #334155;border-radius:12px;padding:10px;color:#cbd5e1}
+    .footer{margin:28px 0;color:#94a3b8;font-size:13px}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#0b1220;border:1px solid #334155;color:#cbd5e1;font-size:12px}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:#0b1220;border:1px solid #334155;padding:2px 6px;border-radius:6px}
+    .lang-select{margin-left:auto}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <div>
+        <div class="title" data-lang-hi="🔧 PDF Toolkit — 100% Free, Client‑Side" data-lang-en="🔧 PDF Toolkit — 100% Free, Client‑Side">🔧 PDF Toolkit — 100% Free, Client‑Side</div>
+        <p class="subtitle" data-lang-hi="इस एक पेज वेबसाइट में आप PDF Merge (जोड़), Split/Extract (अलग), Rotate, और Re‑order कर सकते हैं। सब कुछ आपके ब्राउज़र में होता है — कोई फ़ाइल सर्वर पर अपलोड नहीं होती।" data-lang-en="With this single‑page tool, you can Merge, Split/Extract, Rotate, and Re‑order PDFs. Everything runs locally in your browser — no file uploads.">इस एक पेज वेबसाइट में आप PDF Merge (जोड़), Split/Extract (अलग), Rotate, और Re‑order कर सकते हैं। सब कुछ आपके ब्राउज़र में होता है — कोई फ़ाइल सर्वर पर अपलोड नहीं होती।</p>
+        <div class="bar">
+          <span class="pill" data-lang-hi="गोपनीयता सुरक्षित" data-lang-en="Privacy Safe">गोपनीयता सुरक्षित</span>
+          <span class="pill" data-lang-hi="ऑफ़लाइन भी चले*" data-lang-en="Works Offline*">ऑफ़लाइन भी चले*</span>
+          <span class="pill" data-lang-hi="फ्री होस्टिंग के लिए तैयार" data-lang-en="Ready for Free Hosting">फ्री होस्टिंग के लिए तैयार</span>
+        </div>
+      </div>
+      <div class="lang-select">
+        <select id="langSwitcher">
+          <option value="hi">हिंदी</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- MERGE -->
+      <section class="card" id="mergeCard">
+        <h3 data-lang-hi="🧩 Merge PDFs (एकाधिक PDF जोड़ें)" data-lang-en="🧩 Merge PDFs">🧩 Merge PDFs (एकाधिक PDF जोड़ें)</h3>
+        <p data-lang-hi="एक से अधिक PDF चुनें और क्रम सेट करें, फिर Merge पर क्लिक करें।" data-lang-en="Select multiple PDFs, set order, then click Merge.">एक से अधिक PDF चुनें और क्रम सेट करें, फिर Merge पर क्लिक करें।</p>
+        <div class="inputs">
+          <input type="file" id="mergeInput" accept="application/pdf" multiple />
+          <button class="btn" id="mergeBtn" data-lang-hi="Merge & Download" data-lang-en="Merge & Download">Merge & Download</button>
+          <button class="btn secondary" id="clearMerge" data-lang-hi="Clear" data-lang-en="Clear">Clear</button>
+        </div>
+        <div id="mergeList" class="list small" style="margin-top:10px;display:none"></div>
+      </section>
+
+      <!-- SPLIT -->
+      <section class="card">
+        <h3 data-lang-hi="✂️ Split / Extract Pages (पेज अलग करें)" data-lang-en="✂️ Split / Extract Pages">✂️ Split / Extract Pages (पेज अलग करें)</h3>
+        <p data-lang-hi="एक PDF चुनें और पेज रेंज लिखें, जैसे 1-3,5,8-9। हर रेंज एक नई फ़ाइल बनेगी।" data-lang-en="Choose a PDF and type page ranges like 1-3,5,8-9. Each range creates a new file.">एक PDF चुनें और पेज रेंज लिखें, जैसे 1-3,5,8-9। हर रेंज एक नई फ़ाइल बनेगी।</p>
+        <div class="inputs">
+          <input type="file" id="splitInput" accept="application/pdf" />
+          <input type="text" id="splitRanges" placeholder="उदा: 1-3,5,8-9" data-lang-hi="उदा: 1-3,5,8-9" data-lang-en="Ex: 1-3,5,8-9" style="min-width:240px" />
+          <button class="btn" id="splitBtn" data-lang-hi="Split → ZIP डाउनलोड" data-lang-en="Split → Download ZIP">Split → ZIP डाउनलोड</button>
+        </div>
+        <div class="small" data-lang-hi="टिप: खाली छोड़ने पर हर पेज अलग फ़ाइल बनेगा।" data-lang-en="Tip: Leave empty to split every page into a separate file." style="margin-top:8px">टिप: खाली छोड़ने पर हर पेज अलग फ़ाइल बनेगा।</div>
+      </section>
+
+      <!-- ROTATE -->
+      <section class="card">
+        <h3 data-lang-hi="🔁 Rotate Pages (पेज घुमाएँ)" data-lang-en="🔁 Rotate Pages">🔁 Rotate Pages (पेज घुमाएँ)</h3>
+        <p data-lang-hi="PDF चुनें और घुमाव चुनें। पेज रेंज वैकल्पिक है।" data-lang-en="Select a PDF and rotation. Page ranges optional.">PDF चुनें और घुमाव चुनें। पेज रेंज वैकल्पिक है।</p>
+        <div class="inputs">
+          <input type="file" id="rotateInput" accept="application/pdf" />
+          <select id="rotateDeg">
+            <option value="90">90°</option>
+            <option value="180">180°</option>
+            <option value="270">270°</option>
+          </select>
+          <input type="text" id="rotateRanges" placeholder="पेज: उदा 2-4,7 (खाली = सभी)" data-lang-hi="पेज: उदा 2-4,7 (खाली = सभी)" data-lang-en="Pages: ex 2-4,7 (empty = all)" style="min-width:220px" />
+          <button class="btn" id="rotateBtn" data-lang-hi="Rotate & Download" data-lang-en="Rotate & Download">Rotate & Download</button>
+        </div>
+      </section>
+
+      <!-- REORDER -->
+      <section class="card">
+        <h3 data-lang-hi="🔀 Re‑order Pages (क्रम बदलें)" data-lang-en="🔀 Re‑order Pages">🔀 Re‑order Pages (क्रम बदलें)</h3>
+        <p data-lang-hi="पेज क्रम कॉमा से लिखें (उदा: 2,1,4,3)।" data-lang-en="Enter page order separated by commas (ex: 2,1,4,3).">पेज क्रम कॉमा से लिखें (उदा: 2,1,4,3)।</p>
+        <div class="inputs">
+          <input type="file" id="orderInput" accept="application/pdf" />
+          <input type="text" id="orderList" placeholder="नया क्रम: 2,1,4,3" data-lang-hi="नया क्रम: 2,1,4,3" data-lang-en="New order: 2,1,4,3" style="min-width:220px" />
+          <button class="btn" id="orderBtn" data-lang-hi="Re‑order & Download" data-lang-en="Re‑order & Download">Re‑order & Download</button>
+        </div>
+      </section>
+    </div>
+
+    <p class="footer" data-lang-hi="* पहली बार लोड होने के बाद यह पेज अधिकांश ब्राउज़रों में बिना इंटरनेट के भी काम कर सकता है। ध्यान दें: गहरी Compression और Password Protect जैसे फीचर ब्राउज़र‑only में सीमित हैं।" data-lang-en="* After first load, this page can run offline. Note: Deep compression and password protection are limited in browser‑only mode.">* पहली बार लोड होने के बाद यह पेज अधिकांश ब्राउज़रों में बिना इंटरनेट के भी काम कर सकता है। ध्यान दें: गहरी Compression और Password Protect जैसे फीचर ब्राउज़र‑only में सीमित हैं।</p>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <script>
+    const $ = (id)=>document.getElementById(id);
+
+    // Language switcher
+    const langSwitcher = $('langSwitcher');
+    langSwitcher.addEventListener('change', ()=>{
+      const lang = langSwitcher.value;
+      document.querySelectorAll('[data-lang-hi]').forEach(el=>{
+        el.innerHTML = el.getAttribute(`data-lang-${lang}`);
+        if(el.placeholder){
+          el.placeholder = el.getAttribute(`data-lang-${lang}`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
